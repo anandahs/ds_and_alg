@@ -1,0 +1,19 @@
+#use an official python runtime as a parent image
+FROM python:3.8-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+#install packages from requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+#make port 5000 available to the world outside
+EXPOSE 5000
+
+# define environment variable
+ENV NAME world
+
+CMD ["python", "app.py"]
